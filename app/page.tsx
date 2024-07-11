@@ -4,12 +4,11 @@ import { IGVBrowserInstance } from "@/components/browser/core";
 import { QueryContainer, Track, withQuery } from "@/components/query/container";
 
 import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { toast } from "sonner";
 
 import pLimit from "p-limit";
 import { QueryContent } from "@/components/query/core";
-import { parseRangeFromRegion } from "@/components/query/parse";
 
 const limit = pLimit(8);
 
@@ -50,6 +49,7 @@ export default function Home() {
           );
         }}
         onSearch={async (query) => {
+          console.log(browserRef)
           const browser = browserRef.current;
           const bams = bamsRef.current;
           if (bams.length === 0 || !browser) return;
@@ -78,7 +78,7 @@ export default function Home() {
           );
         }}
       />
-      <IGVBrowser ref={browserRef} />
+      <IGVBrowser igvRef={browserRef} />
     </main>
   );
 }
